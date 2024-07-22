@@ -13,8 +13,8 @@ let handlers = {
     }
 }
 
-// Security Step: define a path to the CAs that you trust.
-const sslCaPath = './sslCACerts/ca-cert.pem';
+// Security step: include the path to the CA certificate
+const sslCaPath = "./sslCACerts/ca-cert.pem"
 
 // Step 2: create a new client.
 //         Include the value of the host, port, and the handlers object you just created.

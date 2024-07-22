@@ -2,7 +2,6 @@ import Html5WebSocket from "html5-websocket";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import { v4 as uuidv4 } from "uuid";
 import fs from 'fs';
-import https from 'https';
 
 class ws_client {
 
@@ -20,8 +19,8 @@ class ws_client {
         const options = { 
             WebSocket: Html5WebSocket,
             tlsOptions: {
-                ca: ca,
-                rejectUnauthorized: true // This ensures the certificate is verified against the CA
+                ca: [ selfSignedRootCaPemCrtBuffer ],
+                rejectUnauthorized: false
             }
         };
         

@@ -15,7 +15,9 @@ class ws_server {
         const options = {
             key: fs.readFileSync(sslKeyPath),
             cert: fs.readFileSync(sslCertPath),
-            ca: fs.readFileSync(sslCaPath)
+            ca: fs.readFileSync(sslCaPath),
+            requestCert: true,
+            rejectUnauthorized: true
         };
 
         if (passphrase) {
@@ -35,6 +37,9 @@ class ws_server {
         this.listMode = false;
         this.probeMode = false;
         this.probeInterval = 10000;
+        if (this.debugMode === true) {
+            console.log("[Server] Created a WebSocket server on port " + this.server_port + ".");
+        }
         this.start_server(handlers);
         this.refreshID = uuidv4();
         this.clientList = [];
