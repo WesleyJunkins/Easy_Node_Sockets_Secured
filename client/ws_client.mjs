@@ -20,6 +20,7 @@ class ws_client {
             WebSocket: Html5WebSocket,
             tlsOptions: {
                 ca: ca,
+                requestCert: false,
                 rejectUnauthorized: false
             }
         };

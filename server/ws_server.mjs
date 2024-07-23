@@ -16,8 +16,8 @@ class ws_server {
             key: fs.readFileSync(sslKeyPath),
             cert: fs.readFileSync(sslCertPath),
             ca: fs.readFileSync(sslCaPath),
-            requestCert: true,
-            rejectUnauthorized: true
+            requestCert: false,
+            rejectUnauthorized: false
         };
 
         if (passphrase) {
