@@ -19,7 +19,7 @@ class ws_client {
         const options = { 
             WebSocket: Html5WebSocket,
             tlsOptions: {
-                ca: [ selfSignedRootCaPemCrtBuffer ],
+                ca: ca,
                 rejectUnauthorized: false
             }
         };
