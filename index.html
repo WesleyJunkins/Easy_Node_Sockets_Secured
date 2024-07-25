@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <p id="status">Connecting...</p>
+    <button onclick="sendMessage()">Send Message</button>
+    <script>
+        const ws = new WebSocket('wss://130.160.124.1:3000');
+
+        ws.onopen = () => {
+            document.getElementById('status').textContent = 'Connected';
+            console.log('WebSocket connection opened');
+        };
+
+        ws.onmessage = (event) => {
+            console.log('Message from server:', event.data);
+        };
+
+        ws.onclose = () => {
+            document.getElementById('status').textContent = 'Disconnected';
+            console.log('WebSocket connection closed');
+        };
+
+        ws.onerror = (error) => {
+            document.getElementById('status').textContent = 'Error';
+            console.error('WebSocket error:', error);
+        };
+
+        function sendMessage() {
+            if (ws.readyState === WebSocket.OPEN) {
+                const message = { method: 'say', params: { text: 'Hello from the client!' } };
+                ws.send(JSON.stringify(message));
+                console.log('Message sent:', message);
+            } else {
+                console.log('WebSocket is not open');
+            }
+        }
+    </script>
+</body>
+</html>
